@@ -51,11 +51,3 @@ under **CC BY 4.0**, for research on T2I safety only.
   Embeddings are **not** distributed.
 - This code repo does **not** ship the heavy data nor the data-preparation scripts; the datasets are
   obtained from the gated repository (access granted to verified researchers).
-
-## De-rebranding note
-This dataset is the paper-aligned version of material that was later reworked, under the name **MEDIETHIC**,
-for a separate benchmark paper. Here it uses the paper's original naming (MEDIETHIC / NSFWGuard /
-MEDIETHIC-600) and is sized to the values reported in this submission.
-
-## Citation
-See `README.md`.
