@@ -66,10 +66,6 @@ adversarial* prompts, training two classifiers (**STD** and **ADV**).
 - **Ablation (R2.1):** the *Safe Replacements* module is necessary — Mean Bypass Rate **27.6%** (full)
   vs **17.3%** (random init) across 7 moderation systems.
 
-<p align="center">
-  <img src="figures/ablation.png" width="72%" alt="Ablation: contribution of the Safe Replacements module"/>
-</p>
-
 Full per-category numbers and the claim→file mapping are in [`EXPERIMENTS.md`](EXPERIMENTS.md).
 
 ---
