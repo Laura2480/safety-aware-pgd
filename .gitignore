@@ -32,6 +32,10 @@ exec_log*.txt
 # eccezione: figure del README (schematiche, sicure)
 !figures/
 !figures/*.png
+# eccezione: esempi qualitativi in appendice al README
+!appendix_top_results/
+!appendix_top_results/**/
+!appendix_top_results/**/*.jpg
 
 # output JSON dei test massivi
 soft_moderation_results_*.json
