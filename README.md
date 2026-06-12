@@ -38,14 +38,17 @@ The attack is a sequence of three modules:
 
 1. **Optimal Replacement** — Integrated Gradients on the CLIP text encoder + an LLM propose *safe
    replacements* for the tokens that trigger the filter, producing a *revised prompt*.
-2. **Safety-Aware PGD** — PGD/PEZ on CLIP token embeddings, optimizing `L = L_sim + L_safety`
-   (semantic similarity to the harmful target while keeping the harm score below threshold), with
-   nearest-neighbor projection onto the vocabulary.
-3. **SUDO-Jailbreaking** — a template that disables the LLM prompt-rewriting of services such as DALL·E.
 
 <p align="center">
   <img src="figures/safe_replacements.png" width="88%" alt="LLM-based prompt dilution and safe/unsafe candidate detection"/>
 </p>
+
+2. **Safety-Aware PGD** — PGD/PEZ on CLIP token embeddings, optimizing `L = L_sim + L_safety`
+   (semantic similarity to the harmful target while keeping the harm score below threshold), with
+   nearest-neighbor projection onto the vocabulary.
+4. **SUDO-Jailbreaking** — a template that disables the LLM prompt-rewriting of services such as DALL·E.
+
+
 
 ### Defense — attention-head decomposition
 
