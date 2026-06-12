@@ -80,7 +80,7 @@ Full per-category numbers and the claim→file mapping are in [`EXPERIMENTS.md`]
 ### DALL·E 3
 
 | Category | Example 1 | Example 2 | Example 3 |
-|---|---|---|---|
+|:---:|:---:|:---:|:---:|
 | Harassment | <img src="appendix_top_results/dalle/harassment_1.jpg" width="150"/>| <img src="appendix_top_results/dalle/harassment_3.jpg" width="150"/> | <img src="appendix_top_results/dalle/harassment_4.jpg" width="150"/> |
 | Hate | <img src="appendix_top_results/dalle/hate_1.jpg" width="150"/> | <img src="appendix_top_results/dalle/hate_2.jpg" width="150"/> | <img src="appendix_top_results/dalle/hate_3.jpg" width="150"/> |
 | Illegal | <img src="appendix_top_results/dalle/illegal_1.jpg" width="150"/> | <img src="appendix_top_results/dalle/illegal_2.jpg" width="150"/> | <img src="appendix_top_results/dalle/illegal_3.jpg" width="150"/> |
@@ -92,7 +92,7 @@ Full per-category numbers and the claim→file mapping are in [`EXPERIMENTS.md`]
 ### IMAGEN 3
 
 | Category | Example 1 | Example 2 | Example 3 |
-|---|---|---|---|
+|:---:|:---:|:---:|:---:|
 | Harassment | <img src="appendix_top_results/imagen/harassment_1.jpg" width="150"/> | <img src="appendix_top_results/imagen/harassment_2.jpg" width="150"/> | <img src="appendix_top_results/imagen/harassment_3.jpg" width="150"/> |
 | Hate | <img src="appendix_top_results/imagen/hate_1.jpg" width="150"/> | <img src="appendix_top_results/imagen/hate_2.jpg" width="150"/> | <img src="appendix_top_results/imagen/hate_3.jpg" width="150"/> |
 | Illegal | <img src="appendix_top_results/imagen/illegal_1.jpg" width="150"/> | <img src="appendix_top_results/imagen/illegal_2.jpg" width="150"/> | <img src="appendix_top_results/imagen/illegal_3.jpg" width="150"/> |
