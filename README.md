@@ -46,8 +46,9 @@ The attack is a sequence of three modules:
 2. **Safety-Aware PGD** — PGD/PEZ on CLIP token embeddings, optimizing `L = L_sim + L_safety`
    (semantic similarity to the harmful target while keeping the harm score below threshold), with
    nearest-neighbor projection onto the vocabulary.
-4. **SUDO-Jailbreaking** — a template that disables the LLM prompt-rewriting of services such as DALL·E.
-
+   <p align="center">
+  <img src="figures/defense_embedding.png" width="92%" alt="Embedding decomposition for adversarial defense"/>
+</p>
 
 
 ### Defense — attention-head decomposition
@@ -55,9 +56,6 @@ The attack is a sequence of three modules:
 CLIP's attention heads are decomposed and individual heads are used to separate *safe / unsafe /
 adversarial* prompts, training two classifiers (**STD** and **ADV**).
 
-<p align="center">
-  <img src="figures/defense_embedding.png" width="92%" alt="Embedding decomposition for adversarial defense"/>
-</p>
 
 ---
 
