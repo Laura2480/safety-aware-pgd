@@ -81,7 +81,7 @@ Full per-category numbers and the claim→file mapping are in [`EXPERIMENTS.md`]
 
 ### DALL·E 3
 
-| Category | Example 1 | Example 2 | Example 3 | Example 4 |
+| Category | Example 1 | Example 2 | Example 3 |
 |---|---|---|---|
 | Harassment | <img src="appendix_top_results/dalle/harassment_1.jpg" width="150"/>| <img src="appendix_top_results/dalle/harassment_3.jpg" width="150"/> | <img src="appendix_top_results/dalle/harassment_4.jpg" width="150"/> |
 | Hate | <img src="appendix_top_results/dalle/hate_1.jpg" width="150"/> | <img src="appendix_top_results/dalle/hate_2.jpg" width="150"/> | <img src="appendix_top_results/dalle/hate_3.jpg" width="150"/> |
