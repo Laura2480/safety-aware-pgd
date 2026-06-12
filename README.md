@@ -43,12 +43,12 @@ The attack is a sequence of three modules:
   <img src="figures/safe_replacements.png" width="88%" alt="LLM-based prompt dilution and safe/unsafe candidate detection"/>
 </p>
 
-2. **Safety-Aware PGD** — PGD/PEZ on CLIP token embeddings, optimizing `L = L_sim + L_safety`
+2. **Safety-Aware PGD** — PGD on CLIP token embeddings, optimizing `L = L_sim + L_safety`
    (semantic similarity to the harmful target while keeping the harm score below threshold), with
    nearest-neighbor projection onto the vocabulary.
 
 <p align="center">
-  <img src="figures/defense_embedding.png" width="92%" alt="Embedding decomposition for adversarial defense"/>
+  <img src="figures/defense_embedding.png" width="88%" alt="Optimized PGD"/>
 </p>
 
 
