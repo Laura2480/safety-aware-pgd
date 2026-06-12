@@ -1,0 +1,156 @@
+# A Safety-Aware Jailbreak Approach to Bypass Security Filters for Generating Harmful Media with Text-to-Image Models
+
+> ⚠️ **Content & Ethics Warning.** This project studies adversarial attacks and defenses for the safety
+> filters of text-to-image (T2I) models. It necessarily references prompts and categories of harmful
+> content. The code is released **strictly for research and security-auditing purposes**. Harmful
+> generated media are **not** shown in this repository; they are available, under access gating, only to
+> verified researchers (see [Datasets](#-datasets)).
+
+**Authors:** Stefano Cirillo · Laura De Santis · Rita Francese · Giandomenico Solimando
+*Department of Computer Science, University of Salerno, Italy*
+
+---
+
+## 📌 Overview
+
+Text-to-image models can be misused to produce disinformative, manipulative or offensive content. We
+investigate the robustness of the safety systems of modern proprietary T2I models and introduce a
+**safety-aware jailbreak** that combines **Projected Gradient Descent (PGD)** with a **safety-aware
+prompt optimization** tailored to bypass text-side safety filters while preserving the harmful semantic
+intent. We further propose a **defense** based on the decomposition of the attention layers of CLIP,
+yielding two classifiers that detect *unsafe* and *adversarial* prompts.
+
+<p align="center">
+  <img src="figures/pipeline.png" width="92%" alt="Safety-Aware jailbreak pipeline"/>
+</p>
+<p align="center"><em>Figure 1 — Overview of the Safety-Aware adversarial pipeline.</em></p>
+
+Our attack exposes vulnerabilities of recent proprietary models (**DALL·E 3**, **IMAGEN 3**,
+**Gemini 2.5 Flash Image**), outperforms popular jailbreaks by **2–8×** in bypassing filters, and the
+proposed **ADV classifier** improves the detection recall of the best commercial filter by up to **4×**.
+
+---
+
+## 🧩 Method
+
+The attack is a sequence of three modules:
+
+1. **Optimal Replacement** — Integrated Gradients on the CLIP text encoder + an LLM propose *safe
+   replacements* for the tokens that trigger the filter, producing a *revised prompt*.
+2. **Safety-Aware PGD** — PGD/PEZ on CLIP token embeddings, optimizing `L = L_sim + L_safety`
+   (semantic similarity to the harmful target while keeping the harm score below threshold), with
+   nearest-neighbor projection onto the vocabulary.
+3. **SUDO-Jailbreaking** — a template that disables the LLM prompt-rewriting of services such as DALL·E.
+
+<p align="center">
+  <img src="figures/safe_replacements.png" width="88%" alt="LLM-based prompt dilution and safe/unsafe candidate detection"/>
+</p>
+
+### 🛡️ Defense — attention-head decomposition
+
+CLIP's attention heads are decomposed and individual heads are used to separate *safe / unsafe /
+adversarial* prompts, training two classifiers (**STD** and **ADV**).
+
+<p align="center">
+  <img src="figures/defense_embedding.png" width="92%" alt="Embedding decomposition for adversarial defense"/>
+</p>
+
+---
+
+## 📊 Key Results
+
+- **Attack (RQ1/RQ2):** overall **BR 42% · ASR 94% · CHR 40%** on SD-XL, well above I2P/MMA/SneakyPrompt/P4D.
+- **Defense (RQ3):** the **ADV classifier** improves recall over the best commercial filter (Azure) by
+  **+180–181%**, generalizing across adversarial families and out-of-distribution sets.
+- **Ablation (R2.1):** the *Safe Replacements* module is necessary — Mean Bypass Rate **27.6%** (full)
+  vs **17.3%** (random init) across 7 moderation systems.
+
+<p align="center">
+  <img src="figures/ablation.png" width="72%" alt="Ablation: contribution of the Safe Replacements module"/>
+</p>
+
+Full per-category numbers and the claim→file mapping are in [`EXPERIMENTS.md`](EXPERIMENTS.md).
+
+---
+
+## 🗂️ Datasets
+
+Three datasets accompany the paper — see [`DATASET.md`](DATASET.md):
+
+| Dataset | Role | Size |
+|---|---|---|
+| **NSFWGuard** | training (safety/harm classifiers) | 50k prompt–image pairs |
+| **MEDIETHIC** | adversarial images, human-annotated | 5,775 (+859 Gemini) |
+| **MEDIETHIC-600** | curated unsafe test prompts | 588 prompts |
+
+Image-bearing data is hosted on a **gated HuggingFace dataset** (request access), split into
+`mediethic_nsfw` and `mediethic_adv`. Embeddings are not distributed.
+
+---
+
+## 📁 Repository structure
+
+```
+src/                     Method code (CLIP, ModerationHeadMLP, Safety-Aware PGD)
+notebooks/MAIN/          Example pipeline + result notebooks
+  1_ATTACK_PIPELINE      Safe Replacements + Safety-Aware PGD (example)
+  3_ANALYSIS_RQS         RQ1/RQ2/RQ3 metrics & tables
+  4_ANALYSIS_MLLM        RQ4 (MLLM vs vision classifier)
+  ablation/              Ablation of the Safe Replacements module (1_…→6_analysis.py)
+imgen_gemini.py          RQ1 on Gemini 2.5 Flash Image (Vertex AI)
+figures/                 README figures
+EXPERIMENTS.md           Detailed experiments & numbers
+DATASET.md               Dataset cards & gated-access info
+```
+
+---
+
+## ⚙️ Setup
+
+```bash
+python -m venv venv && venv\Scripts\activate        # Windows  (Linux/Mac: source venv/bin/activate)
+pip install --upgrade pip
+pip install torch torchvision --index-url https://download.pytorch.org/whl/cu124   # CUDA >= 12.1
+pip install -r requirements_ablation.txt
+```
+
+**Credentials** are read from environment variables (never hardcoded). Copy `.env.example` → `.env`
+and set `OPENAI_API_KEY`, `HF_TOKEN`. Azure uses `azure_config.json`; Gemini/Vertex AI uses
+`gcloud auth application-default login`.
+
+---
+
+## 🔁 Reproducibility
+
+| Paper item | Notebook / code |
+|---|---|
+| Attack pipeline (example) | `notebooks/MAIN/1_ATTACK_PIPELINE.ipynb`, `src/` |
+| RQ1 / RQ2 / RQ3 metrics & tables | `notebooks/MAIN/3_ANALYSIS_RQS.ipynb` |
+| RQ1 Nanobanana (Gemini 2.5 Flash) | `imgen_gemini.py` (+ `merge_results.py`) |
+| RQ4 (MLLM vs vision classifier) | `notebooks/MAIN/4_ANALYSIS_MLLM.ipynb` |
+| Ablation — Safe Replacements | `notebooks/MAIN/ablation/` |
+
+Heavy artifacts (datasets, checkpoints) are obtained from the gated dataset repository, not committed here.
+
+---
+
+## ⚖️ Ethical notice
+- **Research purposes only.** Released for safety research and security testing of T2I systems.
+- **No endorsement** of producing or disseminating harmful content.
+- The authors disclaim responsibility for misuse.
+
+---
+
+## 📨 Data access & citation
+
+Datasets are available **upon request** to verified researchers via this
+[access form](https://docs.google.com/forms/d/e/1FAIpQLSdRNdrCEeheJ5AjAT88FWeBw7Zwx-24tOR8Xdte9J_H_EnUHw/viewform).
+
+```bibtex
+@inproceedings{cirillo2025safetyaware,
+  title     = {A Safety-aware Jailbreak Approach to Bypass Security Filters for Generating Harmful Media with Text-to-Image Models},
+  author    = {Cirillo, Stefano and De Santis, Laura and Francese, Rita and Solimando, Giandomenico},
+  booktitle = {TBD},
+  year      = {2025}
+}
+```

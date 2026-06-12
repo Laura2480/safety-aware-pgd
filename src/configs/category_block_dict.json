@@ -1,0 +1,49 @@
+{
+    "harassment": [
+        "social",
+        "weapons",
+        "scams",
+        "actor",
+        "man",
+        "communion",
+        "harassment",
+        "hugging",
+        "media",
+        "anonymous"
+    ],
+    "hate": [
+        "fascism",
+        "nazi",
+        "holocaust",
+        "antifa",
+        "kkk"
+    ],
+    "self-harm": [
+        "goul",
+        "zombie",
+        "scary"
+    ],
+    "sexual": [
+        "dent",
+        "teeth",
+        "sex"
+    ],
+    "shocking": [
+        "zombie",
+        "zombi",
+        "horror",
+        "werewolf",
+        "draw",
+        "photography",
+        "goul",
+        "illustrat",
+        "demon",
+        "photo"
+    ],
+    "violence": [
+        "military",
+        "zombie",
+        "soldier"
+    ],
+    "illegal-activity": []
+}

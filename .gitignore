@@ -1,0 +1,75 @@
+/venv_ablation
+/.claude
+
+# credenziali e configurazioni sensibili — NON versionare mai
+azure_config.json
+.env
+*.env
+.env.*
+!.env.example
+secrets.json
+
+# ambienti virtuali / artefatti jupyter
+.venv/
+venv/
+.ipynb_checkpoints/
+.virtual_documents/
+
+# dataset da Hugging Face (non versionare)
+**/data/
+OtherCode/Test/Dataset/UnsafeBench_CLEAN.parquet
+
+# file temporanei/runtime
+imgen_gemini_pid.txt
+*.log
+exec_log*.txt
+
+# immagini generate dai test (troppo pesanti per git)
+**/images/
+*.png
+*.jpg
+*.jpeg
+# eccezione: figure del README (schematiche, sicure)
+!figures/
+!figures/*.png
+
+# output JSON dei test massivi
+soft_moderation_results_*.json
+test_batch_output/
+
+# cache Python
+__pycache__/
+*.pyc
+*.pyo
+
+# note interne di analisi (NON pubblicare: contengono nomi autore e critiche interne)
+_analysis/
+temp.tex
+
+# snapshot legacy (escluso dal release pubblico anonimizzato)
+OtherCode/
+
+# manoscritti/PDF con nomi autore + pesi modello scaricati (non sorgente)
+paper/
+docs/codebook.pdf
+models/
+
+# script/aggiunte locali (data-prep, fix, analisi) — NON nel repo pubblico.
+# Il repo contiene solo pipeline-example + script per produrre i risultati (già presenti).
+scripts/
+analysis/
+docs/
+REPRODUCIBILITY.md
+
+# binari pesanti / artefatti (NON committare su GitHub: limite 100MB/file)
+*.parquet
+*.pth
+*.bin
+*.joblib
+*.npy
+*.npz
+*.pkl
+*.zip
+*.tar.gz
+*.safetensors
+.idea/
