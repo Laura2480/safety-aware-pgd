@@ -178,10 +178,15 @@ Datasets are available **upon request** to verified researchers via this
 [access form](https://docs.google.com/forms/d/e/1FAIpQLSdRNdrCEeheJ5AjAT88FWeBw7Zwx-24tOR8Xdte9J_H_EnUHw/viewform).
 
 ```bibtex
-@inproceedings{cirillo2025safetyaware,
+@article{cirillo2026safetyaware,
   title     = {A Safety-aware Jailbreak Approach to Bypass Security Filters for Generating Harmful Media with Text-to-Image Models},
   author    = {Cirillo, Stefano and De Santis, Laura and Francese, Rita and Solimando, Giandomenico},
-  booktitle = {TBD},
-  year      = {2025}
+  journal   = {ACM Transactions on Intelligent Systems and Technology},
+  year      = {2026},
+  publisher = {Association for Computing Machinery},
+  address   = {New York, NY, USA},
+  doi       = {10.1145/3856801},
+  url       = {https://doi.org/10.1145/3856801},
+  note      = {Just Accepted}
 }
 ```
