@@ -187,6 +187,5 @@ Datasets are available **upon request** to verified researchers via this
   address   = {New York, NY, USA},
   doi       = {10.1145/3856801},
   url       = {https://doi.org/10.1145/3856801},
-  note      = {Just Accepted}
 }
 ```
